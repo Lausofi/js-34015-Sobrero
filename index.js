@@ -1,34 +1,31 @@
-// let nombre;
+let opcion
 
-// alert("Ingrese los 3 ingredientes fundamentales para hacer brownies.")
+do{
+    opcion = parseInt(prompt('Escriba la opcion que desea: \n 1. Indicar tarea \n 2. Eliminar tarea \n 3. Salir'))
 
-// for (let i = 1; i <= 3; i++) {
+    switch (opcion){
+        case 1:
+            alert('Indicar tarea'); {
+                let tareas = prompt("Describa: ")
+                console.log(tareas)
+            }
+            break
 
-// 	do {
+        case 2:
+            alert('Eliminar tarea'); {
+                let arrayTareas = ["tender la cama", "pasear al perro"];
+                arrayTareas.pop();
+                console.log(arrayTareas)
+            }
+            break
 
-// 	  nombre = prompt("Escriba el primer ingrediente " + i);
+        case 3:
+            alert('Salir')
+            break
+        
+        default:
+            alert('Opcion no valida')
 
-// 	} while (nombre == "");
+    }
 
-// 	console.log("El ingrediente " + nombre + " salió en la posicion nro: " + i);
-
-// }
-
-const edadUno = parseFloat(prompt("Ingresa la primer edad: "))
-const edadDos = parseFloat(prompt("Ingresa la segunda edad: "))
-const edadTres = parseFloat(prompt("Ingresa la tercera edad: "))
-
-function sumarEdades(
-  edadUno,
-  edadDos,
-  edadTres
-) {
-  let suma = edadUno + edadDos + edadTres;
-  return suma;
-}
-function mostrarPromedio() {
-  let resultadoSuma = sumarEdades(edadUno, edadDos, edadTres);
-  let promedio = resultadoSuma / 3;
-  alert("El promedio de edad es: " + promedio.toFixed(2));
-}
-mostrarPromedio();
+}while(option != 4)
