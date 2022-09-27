@@ -1,44 +1,30 @@
-let opcion
-let arrayTareas =['primero' , 'segundo' , 'tercero']
+const addForm = document.querySelector('.add');
+ 
+addForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const newToDo = addForm.add.value;
+    console.log(newToDo);
+});
 
-do{
-    opcion = parseInt(prompt('Escriba la opcion que desea: \n 1. Indicar tarea \n 2. Eliminar tarea \n 3. Salir'))
+const newToDo = addForm.add.value.trim();
 
-    switch (opcion){
-        case 1:
-            alert('Indicar tarea'); 
+const list = document.querySelector('.to-dos');
+const generateTemplate = toDo => {
+    const html = `
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span>${toDo}</span>
+        <i class="far fa-trash-alt delete"></i>
+    </li>
+    `;
+    list.innerHTML += html;
+};
+addForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const newToDo = addForm.add.value.trim();
+    generateTemplate(newToDo);
+});
 
-                let tareas = prompt("Describa: ")
-                arrayTareas.push(tarea.toLocaleLowercase())
-                console.log(tareas)
-            
-            break
-
-        case 2:
-            if(arrayTareas.length === 0) {alert('No tiene tareas creadas'); break;}
-            alert("Eliminar una tarea:"
-                ${arrayTareas.map(item=> item).join("-")},
-                "por favor ingrese el titulo a eliminar");
-
-
-            let titulo = prompt("Titulo a Eliminar: ").toLocaleLowerCase();
-
-            if(arrayTareas.some(item => item === titulo)){
-                arrayTareas = arrayTareas.filter(item => item != titulo)
-            }
-            else{alert('El titulo ingresado no existe'); break;}
-            console.log(arrayTareas);
-
-            break
-
-        case 3:
-            alert('Salir')
-            break
-        
-        default:
-            alert('Opcion no valida')
-
-    }
-
-        
-}while(option != 4)
+if(newToDo.length) {
+    generateTemplate(newToDo);
+    addForm.reset();
+}
