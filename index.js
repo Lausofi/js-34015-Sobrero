@@ -2,7 +2,49 @@ const addForm =document.getElementById('formulario');
 const container = document.getElementById('contenedor-de-cards');
 const div = document.createElement('div');
 
-let listaDeTareas = []
+let listaDeTareas = [];
+let usuario;
+
+// Variables para elementos de autenticación y usuario
+
+let formularioIdentificacion;
+let contenedorIdentificacion;
+let contenedorUsuario;
+let textoUsuario;
+
+function iniciarElementos(){
+    formularioIdentificacion = document.getElementById("formularioIdentificacion");
+    inputUsuario = document.getElementById("inputUsuario");
+    contenedorIdentificacion = document.getElementById("contenedorIdentificacion");
+    contenedorUsuario = document.getElementById("contenedorUsuario");
+    textoUsuario = document.getElementById("textoUsuario");
+ 
+}
+
+function iniciarEventos(){
+    formularioIdentificacion.onsubmit = (event) => identificarUsuario(event);
+    listaDeTareas.onsubmit = (event) => validarListaDeTareas;
+}
+
+function identificarUsuario(event) {
+    event.preventDefault();
+    usuario = inputUsuario.value;
+    formularioIdentificacion.reset();
+    actualizarUsuarioStorage();
+    mostrarTextoUsuario();
+}
+
+function mostrarTextoUsuario(){
+    contenedorIdentificacion.hidden = true;
+    contenedorUsuario.hidden = false;
+    textoUsuario.innerHTML +=`${usuario}`;
+}
+
+function mostrarFormularioIdentificacion(){
+    contenedorIdentificacion.hidden = false;
+    contenedorUsuario.hidden = true;
+    textoUsuario.innerHTML =``;
+}
 
 function Tarea(id,titulo , responsable, tiempo){
     this.id = id;
@@ -44,8 +86,42 @@ function generateTemplate(){
     container.appendChild(div)
 }
 
+function actualizarlistaDeTareas(){
+    let tareasJSON = JSON.stringify(listaDeTareas);
+    localStorage.setItem("tareas", tareasJSON);
+}
+
+function obtenerlistaDeTareas(){
+    let tareasJSON = localStorage.getItem("listaDeTareas");
+    if (tareasJSON){
+        listaDeTareas = JSON.parse(tareasJSON);
+        pintarTareas();
+    }
+}
+
 function eliminarCard(idFormDelete){
     listaDeTareas = listaDeTareas.filter((item)=> item.id !== idFormDelete)
     div.removeChild(document.getElementById(`card-${idFormDelete}`))
     generateTemplate();
 }
+
+function actualizarUsuarioStorage(){
+    localStorage.setItem("usuario", usuario)
+}
+
+function obtenerUsuarioStorage(){
+    let usuarioAlmacenado = localStorage.getItem("usuario")
+    if (usuarioAlmacenado){
+        usuario = usuarioAlmacenado;
+        mostrarTextoUsuario();
+    }
+}
+
+function main(){
+    iniciarElementos();
+    iniciarEventos();
+    obtenerUsuarioStorage();
+    obtenerListaDeTareas();
+}
+
+main();

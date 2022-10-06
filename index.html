@@ -11,22 +11,48 @@
 </head>
 
 <body>
+    <h1 class="header">To-Do List</h1>
     <div class="container">
+        <div class="col-md-6">
+            <div id="contenedorUsuario" hidden>
+                <p id="textoUsuario" class="fw-bold">Bienvenido: </p>
+            </div>
+            <div id="contenedorIdentificacion" class="container nav justify-content-end">
+                <form id="formularioIdentificacion">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div>
+                                <label class="form-label fw-bold">Nombre</label>
+                                <input 
+                                 type="text" 
+                                 class="form-control"
+                                 id="inputUsuario"
+                                 required
+                                 />
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-flex align-item-end">
+                            <button type="submit" class="btn btn-outline-dark">Login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
         <form id="formulario" class="col-5 g-3" onsubmit="">
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Titulo de la tarea</label>
-                <input id="input-titulo" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Ingresar una tarea">
+                <label for="exampleFormControlInput1" class="form-label fw-bold">Titulo de la tarea</label>
+                <input id="input-titulo" type="text" class="form-control border border-dark" id="exampleFormControlInput1" placeholder="Ingresar una tarea">
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Responsable</label>
-                <input id="input-responsable" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Ingresa el nombre del responsable">
+                <label for="exampleFormControlInput1" class="form-label fw-bold">Responsable</label>
+                <input id="input-responsable" type="text" class="form-control border border-dark" id="exampleFormControlInput1" placeholder="Ingresa el nombre del responsable">
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Tiempo Requerido</label>
-                <input id="input-tiempo" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Ingresa el tiempo requerido">
+                <label for="exampleFormControlInput1" class="form-label fw-bold">Tiempo Requerido</label>
+                <input id="input-tiempo" type="text" class="form-control border border-dark" id="exampleFormControlInput1" placeholder="Ingresa el tiempo requerido">
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-3">Agregar</button>
+                <button type="submit" class="btn btn-primary mb-3 border border-info">Agregar</button>
             </div>
         </form>
         
