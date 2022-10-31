@@ -1,7 +1,7 @@
 const addForm =document.getElementById('formulario');
 const container = document.getElementById('contenedor-de-cards');
 const div = document.createElement('div');
-
+// const botonToast = document.getElementById("btnMostrarToast");
 
 let listaDeTareas = [];
 let usuario;
@@ -22,6 +22,7 @@ function iniciarElementos(){
 
 function iniciarEventos(){
     formularioIdentificacion.onsubmit = (event) => identificarUsuario(event);
+
 }
 
 function identificarUsuario(event) {
@@ -78,6 +79,7 @@ addForm.addEventListener('submit', e => {
     generateTemplate();
     formulario.reset();
     actualizarTareaStorage();
+    mostrarMensajeconfirmacion();
 });
 
 function generateTemplate(){
@@ -96,7 +98,7 @@ function generateTemplate(){
         </div>
         `
     })
-    container.appendChild(div)
+    container.appendChild(div);
 }
 
 function eliminarCard(idFormDelete){
@@ -121,11 +123,25 @@ function obtenerTareasStorage(){
     }
 }
 
+function mostrarMensajeconfirmacion(){
+    Toastify({
+        text: "Tarea agregada!!",
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        position: "right",
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
+      }).showToast();
+}
+
 function main(){
     iniciarElementos();
     iniciarEventos();
     obtenerUsuarioStorage();
     obtenerTareasStorage();
+    mostrarMensajeconfirmacion();
 }
 
 main();
