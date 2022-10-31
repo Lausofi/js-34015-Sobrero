@@ -136,9 +136,22 @@ function mostrarMensajeconfirmacion(){
       }).showToast();
 }
 
+function consultarTareaServer(){
+    fetch ("https://635f1b133e8f65f283ac7c3b.mockapi.io/api/v1/tarea")
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((error) => console.log(error));
+
+    // fetch('./tarea.json')
+    // .then((response) => response.json())
+    // .then((data) => console.log(data))
+    // .catch((error) => console.log(error));
+}
+
 function main(){
     iniciarElementos();
     iniciarEventos();
+    consultarTareaServer();
     obtenerUsuarioStorage();
     obtenerTareasStorage();
     mostrarMensajeconfirmacion();
